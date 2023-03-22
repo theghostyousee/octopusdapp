@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import "../main/main.css";
 import "./presale.css";
-import { useEtherBalance } from "@web3-react/core";
 import contractABI from "./ABI.json";
 
 function Presale() {
 
     const [amount, setAmount] = useState("");
     const [connected, setConnected] = useState(false);
+    const [totalPurchased, setTotalPurchased] = useState(0);
+
 
   const handleMaxClick = async () => {
     const web3 = new Web3(window.ethereum);
@@ -40,6 +41,22 @@ function Presale() {
       console.error(error);
     }
   };
+  
+  useEffect(() => {
+    const updateTotalPurchased = async () => {
+      const web3 = new Web3(window.ethereum);
+      const contractAddress = "0x00A65fDfc0d40DE8632d1ec2673BC7b06C80Ef0E";
+      const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+      const purchased = await contract.methods.totalPurchased().call();
+      setTotalPurchased(purchased);
+    };
+    updateTotalPurchased();
+  }, []);
+
+  const percentage = (totalPurchased / 11.1) * 100;
+
+  
 
   return (
     <div className="main">
@@ -51,7 +68,8 @@ function Presale() {
         </div>
         <div className="wrap-load">
           <div className="loader">
-            <div className="loader-progress"></div>
+            <div className="loader-progress" style={{ width: `${percentage}%` }}></div>
+
           </div>
         </div>
 
