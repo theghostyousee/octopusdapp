@@ -47,14 +47,15 @@ function Presale() {
       const web3 = new Web3(window.ethereum);
       const contractAddress = "0x00A65fDfc0d40DE8632d1ec2673BC7b06C80Ef0E";
       const contract = new web3.eth.Contract(contractABI, contractAddress);
-
+  
       const purchased = await contract.methods.totalPurchased().call();
-      setTotalPurchased(purchased);
+      setTotalPurchased(web3.utils.fromWei(purchased, 'ether'));
     };
     updateTotalPurchased();
   }, []);
-
-  // const percentage = (totalPurchased / 11.1) * 100;
+  
+  const percentage = (totalPurchased / 11.1) * 100;
+  
 
   
 
@@ -68,14 +69,14 @@ function Presale() {
         </div>
         <div className="wrap-load">
           <div className="loader">
-            <div className="loader-progress"></div>
+            <div className="loader-progress" style={{ width: `${percentage}%` }}></div>
 
           </div>
         </div>
 
         <div className="wrap-presale">
           <div className="mini-card">
-            <h3>CURRENT: 1000$</h3>
+            <h3>CURRENT: {totalPurchased * 1800}$</h3>
           </div>
           <div className="mini-card">
             <h3>GOAL: 20 000$</h3>
