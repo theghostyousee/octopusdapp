@@ -75,7 +75,7 @@ function Presale() {
 
         <div className="wrap-presale">
           <div className="mini-card">
-            <h3>CURRENT: 0$</h3>
+            <h3>CURRENT: {totalPurchased * 1800}$</h3>
           </div>
           <div className="mini-card">
             <h3>GOAL: 20 000$</h3>
