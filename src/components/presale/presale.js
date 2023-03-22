@@ -54,7 +54,7 @@ function Presale() {
     updateTotalPurchased();
   }, []);
 
-  const percentage = (totalPurchased / 11.1) * 100;
+  // const percentage = (totalPurchased / 11.1) * 100;
 
   
 
