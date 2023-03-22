@@ -68,14 +68,14 @@ function Presale() {
         </div>
         <div className="wrap-load">
           <div className="loader">
-            <div className="loader-progress" style={{ width: `${percentage}%` }}></div>
+            <div className="loader-progress"></div>
 
           </div>
         </div>
 
         <div className="wrap-presale">
           <div className="mini-card">
-            <h3>CURRENT: {totalPurchased * 1800}$</h3>
+            <h3>CURRENT: 1000$</h3>
           </div>
           <div className="mini-card">
             <h3>GOAL: 20 000$</h3>
